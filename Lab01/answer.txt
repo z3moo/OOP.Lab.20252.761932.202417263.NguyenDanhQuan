@@ -1,0 +1,19 @@
+6.1
+- What happens if users choose "Cancel"?
+-> Chương trình hiển thị hộp thoại với nội dung "You've choosen: No". Điều này xảy ra vì `JOptionPane.showConfirmDialog` trả về `JOptionPane.CANCEL_OPTION` (giá trị 2) nên toán tử sẽ trả về No
+-> The program shows a dialog with "You've choosen: No". This happens because `JOptionPane.showConfirmDialog` returns `JOptionPane.CANCEL_OPTION` (2) so the operator will return No
+
+- How to customize the options to users, e.g. only two options: “Yes” and “No”, OR “I do” and “I don’t”
+-> Để hiện "Yes" hoặc "No": Sử dụng `JOptionPane.YES_NO_OPTION` thay vì mặc định.
+-> To show just "Yes" and "No":
+
+int option = JOptionPane.showConfirmDialog(null, "Do you want to change the first class ticket?", null, JOptionPane.YES_NO_OPTION);
+JOptionPane.showMessageDialog(null, "You've choosen: " + (option==JOptionPane.YES_OPTION?"Yes":"No"));
+
+
+-> Để hiện "I do" hoặc "I don't": Sử dụng `JOptionPane.showOptionDialog` với mảng `Object[]` chứa các lựa chọn.
+-> To show custom text like "I do" and "I don't":
+
+Object[] options = {"I do", "I don't"};
+int option = JOptionPane.showOptionDialog(null, "Do you want to change the first class ticket?", null, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+JOptionPane.showMessageDialog(null, "You've choosen: " + (option==JOptionPane.YES_OPTION?"I do":"I don't"));
