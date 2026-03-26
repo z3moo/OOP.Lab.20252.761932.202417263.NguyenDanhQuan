@@ -1,5 +1,7 @@
 # OOP.Lab.20252.761932.202417263.NguyenDanhQuan
 
+All projects are created using IntelliJ IDEA 
+
 ## Lab01
 
 [answer.txt](Lab01/answer.txt) 
