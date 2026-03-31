@@ -1,4 +1,4 @@
-package Testing;
+package AIMS;
 
 public class DigitalVideoDisc {
     private String title;
@@ -27,10 +27,34 @@ public class DigitalVideoDisc {
         return cost;
     }
 
-    public DigitalVideoDisc(String title, String category, String directory, int length, float cost) {
+    public DigitalVideoDisc(String title) {
+        this.title = title;
+        this.category = "";
+        this.directory = "";
+        this.length = 0;
+        this.cost = 0.0f;
+    }
+
+    public DigitalVideoDisc(String category, String title, float cost) {
         this.title = title;
         this.category = category;
-        this.directory = directory;
+        this.directory = "";
+        this.length = 0;
+        this.cost = cost;
+    }
+
+    public DigitalVideoDisc(String director, String category, String title, float cost) {
+        this.title = title;
+        this.category = category;
+        this.directory = director;
+        this.length = 0;
+        this.cost = cost;
+    }
+
+    public DigitalVideoDisc(String title, String category, String director, int length, float cost) {
+        this.title = title;
+        this.category = category;
+        this.directory = director;
         this.length = length;
         this.cost = cost;
     }
