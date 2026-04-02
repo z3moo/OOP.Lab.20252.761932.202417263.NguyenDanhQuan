@@ -2,9 +2,9 @@
 
 All projects are created using IntelliJ IDEA 
 
-## AIMS
+## Lab02 
 
-[Lab 2](AimsProject)
+[Lab 2](Lab02)
 
 ## Lab01
 

@@ -1,0 +1,16 @@
+# Lab 02
+
+[answer.txt](answer.txt) 
+
+[Reading Assignment](./ReadingAssignment/)
+
+[Use Case Diagram](./Requirement/)
+
+[Class Diagram](./Design/)
+
+[Aims.java](SourceCode/AimsProject/src/AIMS/Aims.java)
+
+[Cart.java](SourceCode/AimsProject/src/AIMS/Cart.java)
+
+[DigitalVideoDisc.java](SourceCode/AimsProject/src/AIMS/DigitalVideoDisc.java)
+
