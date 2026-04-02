@@ -1,0 +1,18 @@
+- English
+Java does not allow you to create two constructors that have the same number and type of parameters 
+Constructor overloading in Java is based on parameter list (type, number, and order) - not on parameter names or intended purpose.
+/**
+public DigitalVideoDisc(String title) { ... }
+public DigitalVideoDisc(String category) { ... }
+**/
+this will result in error since both constructors have the same signature, one String parameter, so the compiler cannot distinguish them.
+
+- Vietnamese
+Java không cho phép tạo hai constructor có cùng số lượng và kiểu tham số.
+Việc overloading constructor trong Java dựa trên tham số (kiểu, số lượng và thứ tự), không dựa vào tên tham số hay mục đích sử dụng.
+/**
+public DigitalVideoDisc(String title) { ... }
+public DigitalVideoDisc(String category) { ... }
+**/
+Đoạn này sẽ gây lỗi vì cả hai constructor có cùng signature, đều chỉ có một tham số kiểu String, nên trình biên dịch không thể phân biệt được.
+
