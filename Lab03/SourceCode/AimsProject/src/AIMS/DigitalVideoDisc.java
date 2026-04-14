@@ -1,7 +1,8 @@
 package AIMS;
 
 public class DigitalVideoDisc {
-
+    private static int nbDigitalVideoDiscs = 0;
+    private int id;
     private String title;
     private String category;
     private String director;
@@ -32,6 +33,10 @@ public class DigitalVideoDisc {
         return title;
     }
 
+    public int getId() {
+        return id;
+    }
+
     public String getCategory() {
         return category;
     }
@@ -49,6 +54,7 @@ public class DigitalVideoDisc {
     }
 
     public DigitalVideoDisc(String title) {
+        this.id = ++nbDigitalVideoDiscs;
         this.title = title;
         this.category = "";
         this.director = "";
@@ -57,6 +63,7 @@ public class DigitalVideoDisc {
     }
 
     public DigitalVideoDisc(String title, String category, float cost) {
+        this.id = ++nbDigitalVideoDiscs;
         this.title = title;
         this.category = category;
         this.director = "";
@@ -65,6 +72,7 @@ public class DigitalVideoDisc {
     }
 
     public DigitalVideoDisc(String title, String category, String director, float cost) {
+        this.id = ++nbDigitalVideoDiscs;
         this.title = title;
         this.category = category;
         this.director = director;
@@ -73,10 +81,11 @@ public class DigitalVideoDisc {
     }
 
     public DigitalVideoDisc(String title, String category, String director, int length, float cost) {
+        this.id = ++nbDigitalVideoDiscs;
         this.title = title;
         this.category = category;
         this.director = director;
         this.length = length;
         this.cost = cost;
-    }   
+    }
 }
