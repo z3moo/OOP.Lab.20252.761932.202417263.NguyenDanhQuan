@@ -15,6 +15,7 @@ public class DigitalVideoDisc {
         return category;
     }
 
+
     public String getDirector() {
         return director;
     }
