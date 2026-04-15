@@ -53,6 +53,14 @@ public class DigitalVideoDisc {
         return cost;
     }
 
+    public String toString() {
+        return "DVD - " + title + " - " + category + " - " + director + " - " + length + ": " + cost + " $";
+    }
+
+    public boolean isMatch(String title) {
+        return this.title.equals(title);
+    }
+
     public DigitalVideoDisc(String title) {
         this.id = ++nbDigitalVideoDiscs;
         this.title = title;
