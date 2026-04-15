@@ -1,10 +1,9 @@
-# OOP.Lab.20252.761932.202417263.NguyenDanhQuan
+# OOP Lab Semester 2025.2 - Nguyen Danh Quan 
 
 All projects are created using IntelliJ IDEA 
 
 ## Aims Project
 - [AimsProject](AimsProject/) - Aims Project
 
-## Others
-- [Lab01](Lab01/) - Lab 01
-- [Lab02](Lab02/) - Lab 02
+## Other Projects
+- [OtherProjects](OtherProjects/) - Other Projects
