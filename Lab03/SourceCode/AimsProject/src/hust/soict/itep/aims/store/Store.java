@@ -1,4 +1,6 @@
-import AIMS.DigitalVideoDisc;
+package hust.soict.itep.aims.store;
+
+import hust.soict.itep.aims.disc.DigitalVideoDisc;
 
 public class Store {
     private DigitalVideoDisc[] itemsInStore = new DigitalVideoDisc[100];

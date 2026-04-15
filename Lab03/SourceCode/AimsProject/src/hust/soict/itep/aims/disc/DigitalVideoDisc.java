@@ -1,4 +1,4 @@
-package AIMS;
+package hust.soict.itep.aims.disc;
 
 public class DigitalVideoDisc {
     private static int nbDigitalVideoDiscs = 0;

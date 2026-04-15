@@ -1,8 +1,9 @@
-import AIMS.DigitalVideoDisc;
+package hust.soict.itep.test.disc;
+
+import hust.soict.itep.aims.disc.DigitalVideoDisc;
 
 public class TestPassingParameter {
     public static void main(String[] args) {
-        //TODO Auto-generated method stub
         DigitalVideoDisc jungleDVD = new DigitalVideoDisc("Jungle");
         DigitalVideoDisc cinderellaDVD = new DigitalVideoDisc("Cinderella");
 

@@ -1,4 +1,7 @@
-package AIMS;
+package hust.soict.itep.aims;
+
+import hust.soict.itep.aims.cart.Cart;
+import hust.soict.itep.aims.disc.DigitalVideoDisc;
 
 public class Aims {
     public static void main(String[] args) {

@@ -2,8 +2,6 @@
 
 [answer.txt](answer.txt) 
 
-[Reading Assignment](./ReadingAssignment/)
-
 [Use Case Diagram](./Requirement/)
 
 [Class Diagram](./Design/)
