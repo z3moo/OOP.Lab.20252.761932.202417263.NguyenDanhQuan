@@ -7,3 +7,7 @@ All projects are created using IntelliJ IDEA
 
 ## Other Projects
 - [OtherProjects](OtherProjects/) - Other Projects
+
+## Labs
+- [Lab1](Lab1/) - Lab 1
+- [Lab2](Lab2/) - Lab 2
