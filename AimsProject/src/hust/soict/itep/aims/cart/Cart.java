@@ -1,6 +1,6 @@
 package hust.soict.itep.aims.cart;
 
-import hust.soict.itep.aims.disc.DigitalVideoDisc;
+import hust.soict.itep.aims.media.DigitalVideoDisc;
 
 public class Cart {
     public static final int MAX_NUMBERS_ORDERED = 20;
