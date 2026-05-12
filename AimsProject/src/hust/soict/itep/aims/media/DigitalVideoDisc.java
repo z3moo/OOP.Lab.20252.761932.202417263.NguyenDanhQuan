@@ -1,28 +1,10 @@
 package hust.soict.itep.aims.media;
 
-public class DigitalVideoDisc extends Media {
+public class DigitalVideoDisc extends Disc {
     private static int nbDigitalVideoDiscs = 0;
-    private String director;
-    private int length;
-
-    public void setDirector(String director) {
-        this.director = director;
-    }
-
-    public void setLength(int length) {
-        this.length = length;
-    }
-
-    public String getDirector() {
-        return director;
-    }
-
-    public int getLength() {
-        return length;
-    }
 
     public String toString() {
-        return "DVD - " + getTitle() + " - " + getCategory() + " - " + director + " - " + length + ": " + getCost() + " $";
+        return "DVD - " + getTitle() + " - " + getCategory() + " - " + getDirector() + " - " + getLength() + ": " + getCost() + " $";
     }
 
     public boolean isMatch(String title) {
@@ -30,38 +12,24 @@ public class DigitalVideoDisc extends Media {
     }
 
     public DigitalVideoDisc(String title) {
+        super(title);
         setId(++nbDigitalVideoDiscs);
-        setTitle(title);
         setCategory("");
-        this.director = "";
-        this.length = 0;
         setCost(0.0f);
     }
 
     public DigitalVideoDisc(String title, String category, float cost) {
+        super(title, category, cost);
         setId(++nbDigitalVideoDiscs);
-        setTitle(title);
-        setCategory(category);
-        this.director = "";
-        this.length = 0;
-        setCost(cost);
     }
 
     public DigitalVideoDisc(String title, String category, String director, float cost) {
+        super(title, category, director, cost);
         setId(++nbDigitalVideoDiscs);
-        setTitle(title);
-        setCategory(category);
-        this.director = director;
-        this.length = 0;
-        setCost(cost);
     }
 
     public DigitalVideoDisc(String title, String category, String director, int length, float cost) {
+        super(title, category, director, length, cost);
         setId(++nbDigitalVideoDiscs);
-        setTitle(title);
-        setCategory(category);
-        this.director = director;
-        this.length = length;
-        setCost(cost);
     }
 }
