@@ -1,42 +1,31 @@
 package hust.soict.itep.aims.store;
 
-import hust.soict.itep.aims.media.DigitalVideoDisc;
+import java.util.ArrayList;
+
+import hust.soict.itep.aims.media.Media;
 
 public class Store {
-    private DigitalVideoDisc[] itemsInStore = new DigitalVideoDisc[100];
+    private ArrayList<Media> itemsInStore = new ArrayList<Media>();
 
-    public void addDVD(DigitalVideoDisc disc) {
-        for (int i = 0; i < itemsInStore.length; i++) {
-            if (itemsInStore[i] == null) {
-                itemsInStore[i] = disc;
-                System.out.println("The disc has been added to the store");
-                return;
-            }
-        }
-        System.out.println("The store is full");
+    public void addMedia(Media media) {
+        itemsInStore.add(media);
+        System.out.println("The media has been added to the store");
     }
 
-    public void removeDVD(DigitalVideoDisc disc) {
-        for (int i = 0; i < itemsInStore.length; i++) {
-            if (itemsInStore[i] == disc) {
-                for (int j = i; j < itemsInStore.length - 1; j++) {
-                    itemsInStore[j] = itemsInStore[j + 1];
-                }
-                itemsInStore[itemsInStore.length - 1] = null;
-                System.out.println("The disc has been removed from the store");
-                return;
-            }
+    public void removeMedia(Media media) {
+        if (itemsInStore.contains(media)) {
+            itemsInStore.remove(media);
+            System.out.println("The media has been removed from the store");
+        } else {
+            System.out.println("The media was not found in the store");
         }
-        System.out.println("The disc was not found in the store");
     }
 
     public void printStore() {
         System.out.println("***********************STORE***********************");
         System.out.println("Items in the store:");
-        for (DigitalVideoDisc disc : itemsInStore) {
-            if (disc != null) {
-                System.out.println(disc);
-            }
+        for (Media media : itemsInStore) {
+            System.out.println(media);
         }
     }
 }
