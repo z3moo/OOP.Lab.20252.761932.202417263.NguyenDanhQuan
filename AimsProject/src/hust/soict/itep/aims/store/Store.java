@@ -8,8 +8,12 @@ public class Store {
     private ArrayList<Media> itemsInStore = new ArrayList<Media>();
 
     public void addMedia(Media media) {
-        itemsInStore.add(media);
-        System.out.println("The media has been added to the store");
+        if (itemsInStore.contains(media)) {
+            System.out.println("The media is already in the store");
+        } else {
+            itemsInStore.add(media);
+            System.out.println("The media has been added to the store");
+        }
     }
 
     public void removeMedia(Media media) {
@@ -27,5 +31,15 @@ public class Store {
         for (Media media : itemsInStore) {
             System.out.println(media);
         }
+        System.out.println("***************************************************");
+    }
+
+    public Media findMediaByTitle(String title) {
+        for (Media media : itemsInStore) {
+            if (media.getTitle().equalsIgnoreCase(title)) {
+                return media;
+            }
+        }
+        return null;
     }
 }

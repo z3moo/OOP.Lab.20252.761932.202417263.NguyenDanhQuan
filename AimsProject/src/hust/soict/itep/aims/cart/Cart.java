@@ -3,6 +3,7 @@ package hust.soict.itep.aims.cart;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import hust.soict.itep.aims.media.DigitalVideoDisc;
 import hust.soict.itep.aims.media.Media;
 
 public class Cart {
@@ -63,7 +64,7 @@ public class Cart {
     public void searchByTitle(String title) {
         boolean found = false;
         for (Media media : itemsOrdered) {
-            if (media.getTitle().equals(title)) {
+            if (media.getTitle().equalsIgnoreCase(title)) {
                 System.out.println(media);
                 found = true;
             }
@@ -79,5 +80,37 @@ public class Cart {
             total += media.getCost();
         }
         return total;
+    }
+
+    public Media findMediaByTitle(String title) {
+        for (Media media : itemsOrdered) {
+            if (media.getTitle().equalsIgnoreCase(title)) {
+                return media;
+            }
+        }
+        return null;
+    }
+
+    public void removeMediaByTitle(String title) {
+        Media media = findMediaByTitle(title);
+        if (media != null) {
+            removeMedia(media);
+        } else {
+            System.out.println("The media was not found in the cart");
+        }
+    }
+
+    public int getNumberOfDVDs() {
+        int count = 0;
+        for (Media media : itemsOrdered) {
+            if (media instanceof DigitalVideoDisc) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public void emptyCart() {
+        itemsOrdered.clear();
     }
 }
