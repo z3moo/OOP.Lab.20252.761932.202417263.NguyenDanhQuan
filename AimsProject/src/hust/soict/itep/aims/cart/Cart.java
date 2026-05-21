@@ -8,8 +8,12 @@ public class Cart {
     private ArrayList<Media> itemsOrdered = new ArrayList<Media>();
 
     public void addMedia(Media media) {
-        itemsOrdered.add(media);
-        System.out.println("The media has been added");
+        if (itemsOrdered.contains(media)) {
+            System.out.println("The media is already in the cart");
+        } else {
+            itemsOrdered.add(media);
+            System.out.println("The media has been added");
+        }
     }
 
     public void addMedia(Media... mediaList) {

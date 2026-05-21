@@ -21,4 +21,18 @@ public class Track implements Playable {
         this.title = title;
         this.length = length;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof Track)) {
+            return false;
+        }
+
+        Track other = (Track) obj;
+        return this.length == other.length
+                && this.title.equals(other.title);
+    }
 }
