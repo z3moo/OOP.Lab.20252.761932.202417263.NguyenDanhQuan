@@ -10,6 +10,11 @@ public class CompactDisc extends Disc implements Playable {
         return artist;
     }
 
+    @Override
+    public String toString() {
+        return "CD - " + getTitle() + " - " + getCategory() + " - " + getArtist() + " - " + getLength() + ": " + getCost() + " $";
+    }
+
     public void addTrack(Track track) {
         if (tracks.contains(track)) {
             System.out.println("The track is already in the CD");

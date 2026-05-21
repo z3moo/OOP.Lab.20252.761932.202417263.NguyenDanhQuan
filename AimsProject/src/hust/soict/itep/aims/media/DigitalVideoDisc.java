@@ -3,6 +3,7 @@ package hust.soict.itep.aims.media;
 public class DigitalVideoDisc extends Disc implements Playable {
     private static int nbDigitalVideoDiscs = 0;
 
+    @Override
     public String toString() {
         return "DVD - " + getTitle() + " - " + getCategory() + " - " + getDirector() + " - " + getLength() + ": " + getCost() + " $";
     }
