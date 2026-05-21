@@ -1,6 +1,7 @@
 package hust.soict.itep.aims.cart;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import hust.soict.itep.aims.media.Media;
 
@@ -39,6 +40,14 @@ public class Cart {
         }
         System.out.println("Total cost: " + totalCost());
         System.out.println("***************************************************");
+    }
+
+    public void sortByTitleCost() {
+        Collections.sort(itemsOrdered, Media.COMPARE_BY_TITLE_COST);
+    }
+
+    public void sortByCostTitle() {
+        Collections.sort(itemsOrdered, Media.COMPARE_BY_COST_TITLE);
     }
 
     public void searchByID(int id) {
