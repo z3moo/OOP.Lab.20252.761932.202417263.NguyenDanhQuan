@@ -1,3 +1,102 @@
-1. Is JAVA a Pass by Value or a Pass by Reference programming language?
-JAVA is a Pass by Value programming language. This means that when you pass an argument to a method, you are passing a copy of the value. If the argument is a  type like int, double, etc., the method receives a copy of the value. If the argument is an object reference, the method receives a copy of the reference, which points to the same object. 
-JAVA là một ngôn ngữ lập trình Pass by Value. Điều này có nghĩa là khi truyền một đối số vào một phương thức, ta đang truyền một bản sao của giá trị đó. Nếu đối số là một kiểu như int, double, v.v., phương thức sẽ nhận được một bản sao của giá trị. Nếu đối số là một tham chiếu đối tượng, phương thức sẽ nhận được một bản sao của tham chiếu, trỏ đến cùng một đối tượng.
+1. Which classes are aggregates of other classes?
+
+Các lớp có quan hệ kết tập trong hệ thống là Cart, Store và CompactDisc.
+
+- Cart chứa danh sách các Media
+- Store chứa danh sách các Media
+- CompactDisc chứa danh sách các Track
+
+Đây là quan hệ “has-a”, tức là lớp chỉ chứa và quản lý đối tượng khác chứ không quyết định vòng đời của chúng, nên được xem là aggregation thay vì inheritance.
+
+2. Do constructors of whole classes initialize their parts?
+
+Có. Constructor của các lớp tổng hợp nên khởi tạo các thành phần bên trong.
+
+Ví dụ:
+
+- Cart khởi tạo ArrayList<Media>
+- Store khởi tạo ArrayList<Media>
+- CompactDisc khởi tạo ArrayList<Track>
+
+Việc này giúp tránh lỗi NullPointerException và đảm bảo đối tượng có thể sử dụng ngay sau khi được tạo.
+
+3. How should constructors of parent and child classes be written?
+
+Constructor của lớp cha Media nên khởi tạo các thuộc tính chung như id, title, category và cost.
+
+Các lớp con nên dùng super() để gọi constructor của lớp cha. Ví dụ:
+
+super(id, title, category, cost);
+
+Cách này giúp tái sử dụng mã nguồn, tránh lặp code và đảm bảo các thuộc tính chung luôn được khởi tạo đúng.
+
+4. Should redundant setter methods be removed? Why?
+
+Có. Những setter không cần thiết nên được loại bỏ.
+
+Một số thuộc tính như id thường không nên thay đổi sau khi đối tượng được tạo. Việc bỏ các setter dư thừa giúp tăng tính đóng gói, hạn chế thay đổi dữ liệu ngoài ý muốn và làm thiết kế class rõ ràng hơn.
+
+5. If the passed object in equals(Object o) is not an instance of Media, what happens?
+
+Nếu object truyền vào không phải instance của Media thì phương thức equals() sẽ trả về false.
+
+Điều này thường được kiểm tra bằng instanceof. Nếu kiểu dữ liệu không phù hợp thì hai đối tượng không được xem là bằng nhau.
+
+6. How should equals() be overridden in Media and Track?
+
+Trong lớp Media, hai đối tượng được xem là bằng nhau nếu có cùng title.
+
+Trong lớp Track, hai đối tượng được xem là bằng nhau nếu có cùng title và length.
+
+Mỗi lớp sẽ có tiêu chí so sánh riêng phù hợp với đặc điểm của nó.
+
+7. What happens when using ArrayList<Media> and calling toString()?
+
+Khi dùng ArrayList<Media> chứa nhiều đối tượng khác nhau rồi gọi toString(), Java sẽ sử dụng cơ chế đa hình.
+
+Điều này nghĩa là phương thức toString() thực tế được gọi sẽ phụ thuộc vào loại đối tượng tại runtime. Ví dụ Book, CD hay DVD đều có thể hiển thị thông tin theo cách riêng của mình.
+
+Đây là ví dụ của dynamic binding trong Java.
+
+8. Which class should implement Comparable interface?
+
+Lớp phù hợp nhất để implement Comparable là Media.
+
+Lý do là tất cả các loại media như Book, CD và DVD đều kế thừa từ Media, nên đây là nơi thích hợp để định nghĩa thứ tự tự nhiên chung cho toàn hệ thống.
+
+9. How should compareTo() be implemented?
+
+compareTo() nên so sánh theo thứ tự:
+
+- title trước
+- nếu title giống nhau thì so sánh tiếp cost
+
+Cách này giúp việc sắp xếp ổn định và dễ hiểu hơn.
+
+10. Can we have two ordering rules using Comparable?
+
+Không. Comparable chỉ cho phép một thứ tự sắp xếp tự nhiên duy nhất.
+
+Vì vậy không thể vừa sắp xếp theo:
+
+- title → cost
+- cost → title
+
+Nếu cần nhiều kiểu sắp xếp khác nhau thì nên dùng Comparator.
+
+11. How to handle different ordering rules for DVDs?
+
+Vì DVD có quy tắc sắp xếp riêng như title → length → cost nên không nên xử lý hoàn toàn bằng Comparable.
+
+Giải pháp tốt hơn là:
+
+- giữ Comparable cho thứ tự mặc định của Media
+- tạo Comparator riêng cho từng kiểu sắp xếp
+
+Ví dụ với DVD comparator:
+
+- so sánh theo title
+- nếu giống nhau thì so sánh length giảm dần
+- nếu vẫn giống nhau thì so sánh tiếp cost
+
+Cách này giúp hệ thống linh hoạt và dễ mở rộng hơn.
