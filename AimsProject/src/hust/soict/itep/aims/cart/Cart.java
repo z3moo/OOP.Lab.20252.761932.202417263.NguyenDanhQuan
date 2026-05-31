@@ -1,20 +1,23 @@
 package hust.soict.itep.aims.cart;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
+import hust.soict.itep.aims.exceptions.PlayerException;
 import hust.soict.itep.aims.media.DigitalVideoDisc;
 import hust.soict.itep.aims.media.Media;
+import hust.soict.itep.aims.media.Playable;
 
 public class Cart {
-    private ArrayList<Media> itemsOrdered = new ArrayList<Media>();
+    public static final int MAX_NUMBERS_ORDERED = 20;
+    private ObservableList<Media> itemsOrdered = FXCollections.observableArrayList();
 
     public void addMedia(Media media) {
-        if (itemsOrdered.contains(media)) {
-            System.out.println("The media is already in the cart");
-        } else {
+        if (itemsOrdered.size() < MAX_NUMBERS_ORDERED) {
             itemsOrdered.add(media);
-            System.out.println("The media has been added");
+            System.out.println("Added " + media.getTitle());
+        } else {
+            System.out.println("The cart is full");
         }
     }
 
@@ -24,31 +27,43 @@ public class Cart {
         }
     }
 
+    public ObservableList<Media> getItemsOrdered() {
+        return itemsOrdered;
+    }
+
     public void removeMedia(Media media) {
         if (itemsOrdered.contains(media)) {
             itemsOrdered.remove(media);
-            System.out.println("The media has been removed");
+            System.out.println("Removed " + media.getTitle());
         } else {
             System.out.println("The media was not found in the cart");
         }
     }
 
+    public void clearCart() {
+        itemsOrdered.clear();
+        System.out.println("The cart has been cleared");
+    }
+
+    public void emptyCart() {
+        clearCart();
+    }
+
+    public float totalCost() {
+        float total = 0;
+        for (Media media : itemsOrdered) {
+            total += media.getCost();
+        }
+        return total;
+    }
+
     public void printCart() {
         System.out.println("***********************CART***********************");
-        System.out.println("Ordered Items:");
         for (int i = 0; i < itemsOrdered.size(); i++) {
             System.out.println((i + 1) + ". " + itemsOrdered.get(i));
         }
         System.out.println("Total cost: " + totalCost());
         System.out.println("***************************************************");
-    }
-
-    public void sortByTitleCost() {
-        Collections.sort(itemsOrdered, Media.COMPARE_BY_TITLE_COST);
-    }
-
-    public void sortByCostTitle() {
-        Collections.sort(itemsOrdered, Media.COMPARE_BY_COST_TITLE);
     }
 
     public void searchByID(int id) {
@@ -74,12 +89,34 @@ public class Cart {
         }
     }
 
-    public float totalCost() {
-        float total = 0;
+    public ObservableList<Media> filterByID(int id) {
+        ObservableList<Media> filtered = FXCollections.observableArrayList();
         for (Media media : itemsOrdered) {
-            total += media.getCost();
+            if (media.getId() == id) {
+                filtered.add(media);
+            }
         }
-        return total;
+        return filtered;
+    }
+
+    public ObservableList<Media> filterByTitle(String title) {
+        ObservableList<Media> filtered = FXCollections.observableArrayList();
+        if (title == null) return filtered;
+        String needle = title.toLowerCase();
+        for (Media media : itemsOrdered) {
+            if (media.getTitle() != null && media.getTitle().toLowerCase().contains(needle)) {
+                filtered.add(media);
+            }
+        }
+        return filtered;
+    }
+
+    public void sortByTitleCost() {
+        itemsOrdered.sort(Media.COMPARE_BY_TITLE_COST);
+    }
+
+    public void sortByCostTitle() {
+        itemsOrdered.sort(Media.COMPARE_BY_COST_TITLE);
     }
 
     public Media findMediaByTitle(String title) {
@@ -110,7 +147,11 @@ public class Cart {
         return count;
     }
 
-    public void emptyCart() {
-        itemsOrdered.clear();
+    public void playMedia(Media media) throws PlayerException {
+        if (itemsOrdered.contains(media)) {
+            if (media instanceof Playable) {
+                ((Playable) media).play();
+            }
+        }
     }
 }
