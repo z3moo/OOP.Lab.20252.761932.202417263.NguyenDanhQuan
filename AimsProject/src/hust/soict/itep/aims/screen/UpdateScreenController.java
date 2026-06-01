@@ -10,6 +10,7 @@ import javafx.scene.layout.VBox;
 import hust.soict.itep.aims.media.Book;
 import hust.soict.itep.aims.media.CompactDisc;
 import hust.soict.itep.aims.media.DigitalVideoDisc;
+import hust.soict.itep.aims.media.Media;
 import hust.soict.itep.aims.store.Store;
 
 public class UpdateScreenController {
@@ -28,6 +29,9 @@ public class UpdateScreenController {
 
     // DVD fields
     @FXML private TextField dvdTitle, dvdCategory, dvdCost, dvdDirector, dvdLength;
+
+    // Remove field
+    @FXML private TextField removeTitle;
 
     public UpdateScreenController(Store store, StoreScreen storeScreen) {
         this.store = store;
@@ -187,6 +191,23 @@ public class UpdateScreenController {
         dvdCost.clear();
         dvdDirector.clear();
         dvdLength.clear();
+    }
+
+    @FXML
+    private void handleRemoveMedia(ActionEvent event) {
+        String title = removeTitle.getText().trim();
+        if (title.isEmpty()) {
+            showAlert("Error", "Enter a title to remove");
+            return;
+        }
+        Media media = store.findMediaByTitle(title);
+        if (media == null) {
+            showAlert("Not Found", "No media with title \"" + title + "\" in the store");
+            return;
+        }
+        store.removeMedia(media);
+        showAlert("Success", "Removed \"" + media.getTitle() + "\" from the store");
+        removeTitle.clear();
     }
 
     private void showAlert(String title, String message) {

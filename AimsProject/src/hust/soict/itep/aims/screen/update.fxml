@@ -189,6 +189,17 @@
                   <Insets top="10.0" />
                </VBox.margin>
             </Button>
+
+            <HBox alignment="CENTER_LEFT" spacing="10.0">
+               <padding>
+                  <Insets top="20.0" />
+               </padding>
+               <children>
+                  <Label text="Remove by title:" minWidth="100.0" />
+                  <TextField fx:id="removeTitle" promptText="Title to remove" />
+                  <Button mnemonicParsing="false" onAction="#handleRemoveMedia" text="Remove" />
+               </children>
+            </HBox>
          </children>
          <padding>
             <Insets left="10.0" />
