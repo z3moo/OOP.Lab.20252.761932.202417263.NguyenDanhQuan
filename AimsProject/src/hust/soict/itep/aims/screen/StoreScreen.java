@@ -35,6 +35,7 @@ public class StoreScreen extends JFrame {
 
     private JPanel cards;
     private CardLayout cardLayout;
+    private JPanel northPanel;
 
     private CartScreen cartScreen;
     private UpdateScreen updateScreen;
@@ -50,7 +51,8 @@ public class StoreScreen extends JFrame {
         Container cp = getContentPane();
         cp.setLayout(new BorderLayout());
 
-        cp.add(createNorth(), BorderLayout.NORTH);
+        northPanel = createNorth();
+        cp.add(northPanel, BorderLayout.NORTH);
         cp.add(createCards(), BorderLayout.CENTER);
 
         setTitle("AIMS - Store");
@@ -142,7 +144,7 @@ public class StoreScreen extends JFrame {
 
         ArrayList<Media> mediaInStore = store.getItemsInStore();
         for (int i = 0; i < 9 && i < mediaInStore.size(); i++) {
-            MediaStore cell = new MediaStore(mediaInStore.get(i));
+            MediaStore cell = new MediaStore(mediaInStore.get(i), cart);
             center.add(cell);
         }
         return center;
@@ -152,16 +154,21 @@ public class StoreScreen extends JFrame {
         SwingUtilities.invokeLater(() -> {
             cards.remove(0);
             cards.add(createStorePanel(), CARD_STORE, 0);
+            northPanel.setVisible(true);
             cardLayout.show(cards, CARD_STORE);
         });
     }
 
     public void showCartView() {
-        SwingUtilities.invokeLater(() -> cardLayout.show(cards, CARD_CART));
+        SwingUtilities.invokeLater(() -> {
+            northPanel.setVisible(false);
+            cardLayout.show(cards, CARD_CART);
+        });
     }
 
     public void showUpdateView(String mediaType) {
         SwingUtilities.invokeLater(() -> {
+            northPanel.setVisible(false);
             cardLayout.show(cards, CARD_UPDATE);
             if (updateScreen != null) {
                 updateScreen.setMediaType(mediaType);

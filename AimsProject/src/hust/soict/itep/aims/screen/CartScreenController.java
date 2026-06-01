@@ -32,6 +32,7 @@ public class CartScreenController {
     private final StoreScreen storeScreen;
 
     @FXML private TableView<Media> tblMedia;
+    @FXML private TableColumn<Media, Integer> colMediaId;
     @FXML private TableColumn<Media, String> colMediaTitle;
     @FXML private TableColumn<Media, String> colMediaCategory;
     @FXML private TableColumn<Media, Float> colMediaCost;
@@ -53,6 +54,7 @@ public class CartScreenController {
 
     @FXML
     private void initialize() {
+        colMediaId.setCellValueFactory(new PropertyValueFactory<>("id"));
         colMediaTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
         colMediaCategory.setCellValueFactory(new PropertyValueFactory<>("category"));
         colMediaCost.setCellValueFactory(new PropertyValueFactory<>("cost"));
@@ -108,8 +110,17 @@ public class CartScreenController {
 
     @FXML
     private void btnOrderPressed(ActionEvent e) {
+        if (cart.getItemsOrdered().isEmpty()) {
+            alert("Cart is empty");
+            return;
+        }
         alert("Order placed");
         cart.clearCart();
+        // Sort/filter may have replaced the table's items with a snapshot list,
+        // so re-bind to the live cart so the empty state shows.
+        tblMedia.setItems(cart.getItemsOrdered());
+        tfFilter.clear();
+        updateTotalCost();
     }
 
     @FXML
@@ -123,12 +134,40 @@ public class CartScreenController {
     @FXML
     private void btnPlayPressed(ActionEvent e) {
         Media media = tblMedia.getSelectionModel().getSelectedItem();
-        alert("Playing media, see console");
-        try {
-            cart.playMedia(media);
-        } catch (PlayerException ex) {
-            alert("Cannot play media");
+        if (media == null) {
+            return;
         }
+        if (!(media instanceof Playable)) {
+            alert("This media cannot be played");
+            return;
+        }
+        if (media instanceof hust.soict.itep.aims.media.Disc) {
+            int len = ((hust.soict.itep.aims.media.Disc) media).getLength();
+            if (len <= 0) {
+                alert("Cannot play " + media.getTitle() + ": length is non-positive");
+                return;
+            }
+        }
+        alert(playMessage(media));
+    }
+
+    private String playMessage(Media media) {
+        StringBuilder sb = new StringBuilder();
+        if (media instanceof hust.soict.itep.aims.media.DigitalVideoDisc) {
+            hust.soict.itep.aims.media.DigitalVideoDisc dvd =
+                    (hust.soict.itep.aims.media.DigitalVideoDisc) media;
+            sb.append("Playing DVD: ").append(dvd.getTitle()).append('\n');
+            sb.append("DVD length: ").append(dvd.getLength());
+        } else if (media instanceof hust.soict.itep.aims.media.CompactDisc) {
+            hust.soict.itep.aims.media.CompactDisc cd =
+                    (hust.soict.itep.aims.media.CompactDisc) media;
+            sb.append("Playing CD: ").append(cd.getTitle()).append('\n');
+            sb.append("CD artist: ").append(cd.getArtist()).append('\n');
+            sb.append("CD length: ").append(cd.getLength());
+        } else {
+            sb.append("Playing: ").append(media.getTitle());
+        }
+        return sb.toString();
     }
 
     private void updateTotalCost() {
