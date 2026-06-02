@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <VBox prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <MenuBar>
+              <menus>
+                <Menu mnemonicParsing="false" text="Options">
+                  <items>
+                        <Menu mnemonicParsing="false" text="Update Store">
+                          <items>
+                              <MenuItem mnemonicParsing="false" text="Add Book" />
+                              <MenuItem mnemonicParsing="false" text="Add CD" />
+                              <MenuItem mnemonicParsing="false" text="Add DVD" />
+                          </items>
+                        </Menu>
+                        <MenuItem mnemonicParsing="false" onAction="#viewStore" text="View Store" />
+                        <MenuItem mnemonicParsing="false" onAction="#viewCart" text="View Cart" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+            <Label text="Update Store" textFill="AQUA">
+               <font>
+                  <Font size="50.0" />
+               </font>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </Label>
+         </children>
+      </VBox>
+   </top>
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefWidth="200.0" spacing="10.0">
+               <children>
+                  <Label text="Media type" />
+                  <RadioButton fx:id="radioBook" mnemonicParsing="false" onAction="#handleMediaTypeChange" selected="true" text="Book">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="mediaType" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="radioCD" mnemonicParsing="false" onAction="#handleMediaTypeChange" text="CD" toggleGroup="$mediaType" />
+                  <RadioButton fx:id="radioDVD" mnemonicParsing="false" onAction="#handleMediaTypeChange" text="DVD" toggleGroup="$mediaType" />
+               </children>
+               <padding>
+                  <Insets bottom="10.0" top="10.0" />
+               </padding>
+            </HBox>
+
+            <StackPane prefHeight="400.0" prefWidth="600.0">
+               <children>
+                  <VBox fx:id="bookForm" spacing="10.0" visible="true">
+                     <children>
+                        <HBox spacing="10.0" alignment="CENTER_LEFT">
+                           <children>
+                              <Label text="Title:" minWidth="100.0" />
+                              <TextField fx:id="bookTitle" promptText="Enter book title" />
+                           </children>
+                        </HBox>
+                        <HBox spacing="10.0" alignment="CENTER_LEFT">
+                           <children>
+                              <Label text="Category:" minWidth="100.0" />
+                              <TextField fx:id="bookCategory" promptText="Enter category" />
+                           </children>
+                        </HBox>
+                        <HBox spacing="10.0" alignment="CENTER_LEFT">
+                           <children>
+                              <Label text="Cost:" minWidth="100.0" />
+                              <TextField fx:id="bookCost" promptText="Enter cost" />
+                           </children>
+                        </HBox>
+                        <HBox spacing="10.0" alignment="CENTER_LEFT">
+                           <children>
+                              <Label text="Authors:" minWidth="100.0" />
+                              <TextField fx:id="bookAuthors" promptText="Enter authors (comma separated)" />
+                           </children>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </VBox>
+
+                  <VBox fx:id="cdForm" spacing="10.0" visible="false">
+                     <children>
+                        <HBox spacing="10.0" alignment="CENTER_LEFT">
+                           <children>
+                              <Label text="Title:" minWidth="100.0" />
+                              <TextField fx:id="cdTitle" promptText="Enter CD title" />
+                           </children>
+                        </HBox>
+                        <HBox spacing="10.0" alignment="CENTER_LEFT">
+                           <children>
+                              <Label text="Category:" minWidth="100.0" />
+                              <TextField fx:id="cdCategory" promptText="Enter category" />
+                           </children>
+                        </HBox>
+                        <HBox spacing="10.0" alignment="CENTER_LEFT">
+                           <children>
+                              <Label text="Cost:" minWidth="100.0" />
+                              <TextField fx:id="cdCost" promptText="Enter cost" />
+                           </children>
+                        </HBox>
+                        <HBox spacing="10.0" alignment="CENTER_LEFT">
+                           <children>
+                              <Label text="Artist:" minWidth="100.0" />
+                              <TextField fx:id="cdArtist" promptText="Enter artist" />
+                           </children>
+                        </HBox>
+                        <HBox spacing="10.0" alignment="CENTER_LEFT">
+                           <children>
+                              <Label text="Director:" minWidth="100.0" />
+                              <TextField fx:id="cdDirector" promptText="Enter director" />
+                           </children>
+                        </HBox>
+                        <HBox spacing="10.0" alignment="CENTER_LEFT">
+                           <children>
+                              <Label text="Length:" minWidth="100.0" />
+                              <TextField fx:id="cdLength" promptText="Enter length" />
+                           </children>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </VBox>
+
+                  <VBox fx:id="dvdForm" spacing="10.0" visible="false">
+                     <children>
+                        <HBox spacing="10.0" alignment="CENTER_LEFT">
+                           <children>
+                              <Label text="Title:" minWidth="100.0" />
+                              <TextField fx:id="dvdTitle" promptText="Enter DVD title" />
+                           </children>
+                        </HBox>
+                        <HBox spacing="10.0" alignment="CENTER_LEFT">
+                           <children>
+                              <Label text="Category:" minWidth="100.0" />
+                              <TextField fx:id="dvdCategory" promptText="Enter category" />
+                           </children>
+                        </HBox>
+                        <HBox spacing="10.0" alignment="CENTER_LEFT">
+                           <children>
+                              <Label text="Cost:" minWidth="100.0" />
+                              <TextField fx:id="dvdCost" promptText="Enter cost" />
+                           </children>
+                        </HBox>
+                        <HBox spacing="10.0" alignment="CENTER_LEFT">
+                           <children>
+                              <Label text="Director:" minWidth="100.0" />
+                              <TextField fx:id="dvdDirector" promptText="Enter director" />
+                           </children>
+                        </HBox>
+                        <HBox spacing="10.0" alignment="CENTER_LEFT">
+                           <children>
+                              <Label text="Length:" minWidth="100.0" />
+                              <TextField fx:id="dvdLength" promptText="Enter length (minutes)" />
+                           </children>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </StackPane>
+
+            <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#handleAddMedia" text="Add">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Button>
+
+            <HBox alignment="CENTER_LEFT" spacing="10.0">
+               <padding>
+                  <Insets top="20.0" />
+               </padding>
+               <children>
+                  <Label text="Remove by title:" minWidth="100.0" />
+                  <TextField fx:id="removeTitle" promptText="Title to remove" />
+                  <Button mnemonicParsing="false" onAction="#handleRemoveMedia" text="Remove" />
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets left="10.0" />
+         </padding>
+      </VBox>
+   </center>
+</BorderPane>

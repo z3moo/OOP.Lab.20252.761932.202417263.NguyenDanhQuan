@@ -1,0 +1,13 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch Painter (JavaFX)",
+            "request": "launch",
+            "mainClass": "hust.soict.itep.javafx.Painter",
+            "projectName": "GUIProject",
+            "vmArgs": "--module-path \"E:\\CACMON\\OOP\\javafx-sdk-21.0.11\\lib\" --add-modules javafx.controls,javafx.fxml"
+        }
+    ]
+}
